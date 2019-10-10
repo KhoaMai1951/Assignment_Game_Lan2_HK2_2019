@@ -24,7 +24,7 @@
 
 #define BACKGROUND_COLOR D3DCOLOR_XRGB(200, 200, 255)
 #define SCREEN_WIDTH 320
-#define SCREEN_HEIGHT 240
+#define SCREEN_HEIGHT 500
 
 #define MAX_FRAME_RATE 60
 
@@ -60,13 +60,14 @@ void LoadResources()
 
 	textures->Add(ID_TEX_MARIO, L"textures\\mario.png",D3DCOLOR_XRGB(176, 224, 248));
 	//textures->Add(ID_ENEMY_TEXTURE, L"textures\\enemies.png", D3DCOLOR_XRGB(156, 219, 239));
-	//textures->Add(ID_TEX_MISC, L"textures\\misc.png", D3DCOLOR_XRGB(156, 219, 239));
+	textures->Add(ID_TEX_MISC, L"textures\\misc.png", D3DCOLOR_XRGB(156, 219, 239));
 
 
 	CSprites * sprites = CSprites::GetInstance();
 	CAnimations * animations = CAnimations::GetInstance();
 	
 	LPDIRECT3DTEXTURE9 texMario = textures->Get(ID_TEX_MARIO);
+	LPDIRECT3DTEXTURE9 texMisc = textures->Get(ID_TEX_MISC);
 
 	// readline => id, left, top, right 
 
@@ -78,20 +79,19 @@ void LoadResources()
 	sprites->Add(10012, 155, 154, 170, 181, texMario);
 	sprites->Add(10013, 125, 154, 140, 181, texMario);
 
-	LPDIRECT3DTEXTURE9 texMisc = textures->Get(ID_TEX_MISC);
-	sprites->Add(20001, 300, 117, 315, 132, texMisc);
-	sprites->Add(20002, 318, 117, 333, 132, texMisc);
-	sprites->Add(20003, 336, 117, 351, 132, texMisc);
-	sprites->Add(20004, 354, 117, 369, 132, texMisc);
+	sprites->Add(10111, 300, 136, 316, 151, texMisc);
+
+	
 	
 
 
 	LPANIMATION ani;
 
 	ani = new CAnimation(100);
-	ani->Add(10001);
+	ani->Add(10111);
+	/*ani->Add(10001);
 	ani->Add(10002);
-	ani->Add(10003);
+	ani->Add(10003);*/
 	animations->Add(500, ani);
 
 	ani = new CAnimation(100);
@@ -115,7 +115,7 @@ void LoadResources()
 	//mario->AddAnimation(510);
 
 
-	mario->SetPosition(10.0f, 100.0f);
+	mario->SetPosition(0, 0);
 }
 
 /*
@@ -124,7 +124,7 @@ void LoadResources()
 */
 void Update(DWORD dt)
 {
-	mario->Update(dt);
+	mario->Update(dt, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 /*

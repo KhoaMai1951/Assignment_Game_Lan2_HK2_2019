@@ -1,4 +1,4 @@
-/* =============================================================
+﻿/* =============================================================
 	INTRODUCTION TO GAME PROGRAMMING SE102
 	
 	SAMPLE 03 - KEYBOARD AND OBJECT STATE
@@ -36,6 +36,7 @@
 CGame *game;
 CMario *mario;
 
+// Khởi tạo Lớp CSampleKeyHander kế thừa lớp CKeyEventHandler từ Game.h
 class CSampleKeyHander: public CKeyEventHandler
 {
 	virtual void KeyState(BYTE *states);
@@ -45,6 +46,7 @@ class CSampleKeyHander: public CKeyEventHandler
 
 CSampleKeyHander * keyHandler; 
 
+//Nhấn 1 lần
 void CSampleKeyHander::OnKeyDown(int KeyCode)
 {
 	DebugOut(L"[INFO] KeyDown: %d\n", KeyCode);
@@ -56,11 +58,13 @@ void CSampleKeyHander::OnKeyDown(int KeyCode)
 	}
 }
 
+
 void CSampleKeyHander::OnKeyUp(int KeyCode)
 {
 	DebugOut(L"[INFO] KeyUp: %d\n", KeyCode);
 }
 
+//Nhấn lâu
 void CSampleKeyHander::KeyState(BYTE *states)
 {
 	if (game->IsKeyDown(DIK_RIGHT))
@@ -99,10 +103,10 @@ void LoadResources()
 	LPDIRECT3DTEXTURE9 texMario = textures->Get(ID_TEX_MARIO);
 
 
-	sprites->Add(10001, 246, 154, 260, 181, texMario);
+	sprites->Add(10001, 246, 154, 260, 181, texMario); // 260-246 = 14
 
-	sprites->Add(10002, 275, 154, 290, 181, texMario);
-	sprites->Add(10003, 304, 154, 321, 181, texMario);
+	sprites->Add(10002, 275, 154, 290, 181, texMario); // 290 - 275 = 15
+	sprites->Add(10003, 304, 154, 321, 181, texMario); // 321 - 304 =  17
 
 	sprites->Add(10011, 186, 154, 200, 181, texMario);
 

@@ -1,4 +1,4 @@
-#include "Game.h"
+﻿#include "Game.h"
 #include "debug.h"
 
 CGame * CGame::__instance = NULL;
@@ -145,6 +145,7 @@ void CGame::ProcessKeyboard()
 	HRESULT hr; 
 
 	// Collect all key states first
+	// Thu thập toàn bộ key state trước
 	hr = didv->GetDeviceState(sizeof(keyStates), keyStates);
 	if (FAILED(hr))
 	{
@@ -165,11 +166,11 @@ void CGame::ProcessKeyboard()
 		}
 	}
 
+	//Set key state đang đc nhấn vào trong hàm KeyState và gọi hàm
 	keyHandler->KeyState((BYTE *)&keyStates);
 
-
-
 	// Collect all buffered events
+	// Thu thập toàn bộ sự kiện buffered
 	DWORD dwElements = KEYBOARD_BUFFER_SIZE;
 	hr = didv->GetDeviceData(sizeof(DIDEVICEOBJECTDATA), keyEvents, &dwElements, 0);
 	if (FAILED(hr))
@@ -179,11 +180,14 @@ void CGame::ProcessKeyboard()
 	}
 
 	// Scan through all buffered events, check if the key is pressed or released
+	// quét toàn bộ các sự kiện, kiểm tra phím nào đc bấm hay thả chưa
 	for (DWORD i = 0; i < dwElements; i++)
 	{
 		int KeyCode = keyEvents[i].dwOfs;
 		int KeyState = keyEvents[i].dwData;
 		if ((KeyState & 0x80) > 0)
+			/*Truyền tham số KeyCode vào hàm OnKeyDown để xử lý sự kiện khi 1 phím được 
+			nhấn thả và gọi hàm*/
 			keyHandler->OnKeyDown(KeyCode);
 		else
 			keyHandler->OnKeyUp(KeyCode);

@@ -32,6 +32,21 @@ void CGoomba::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	}
 }
 
+void CGoomba::SetState(int state)
+{
+	CGameObject::SetState(state);
+	switch (state)
+	{
+	case GOOMBA_STATE_DIE:
+		y += GOOMBA_BBOX_HEIGHT - GOOMBA_BBOX_HEIGHT_DIE + 1;
+		vx = 0;
+		vy = 0;
+		break;
+	case GOOMBA_STATE_WALKING:
+		vx = -GOOMBA_WALKING_SPEED;
+	}
+}
+
 void CGoomba::Render()
 {
 	int ani = GOOMBA_ANI_WALKING;
@@ -43,18 +58,3 @@ void CGoomba::Render()
 	//RenderBoundingBox();
 }
 
-void CGoomba::SetState(int state)
-{
-	CGameObject::SetState(state);
-	switch (state)
-	{
-		case GOOMBA_STATE_DIE:
-			y += GOOMBA_BBOX_HEIGHT - GOOMBA_BBOX_HEIGHT_DIE + 1;
-			vx = 0;
-			vy = 0;
-			break;
-		case GOOMBA_STATE_WALKING: 
-			vx = -GOOMBA_WALKING_SPEED;
-	}
-
-}

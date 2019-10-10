@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <Windows.h>
 #include <d3d9.h>
 #include <d3dx9.h>
@@ -10,6 +10,8 @@
 /*
 Abstract class to define keyboard event handlers
 */
+//Hàm trừu tượng để thực hiện xử lý sự kiện khi phím được bấm
+//Sự kiện trong hàm được mô tả trong main.cpp
 class CKeyEventHandler
 {
 public:
@@ -37,7 +39,7 @@ class CGame
 	BYTE  keyStates[256];			// DirectInput keyboard state buffer 
 	DIDEVICEOBJECTDATA keyEvents[KEYBOARD_BUFFER_SIZE];		// Buffered keyboard data
 
-	LPKEYEVENTHANDLER keyHandler;
+	LPKEYEVENTHANDLER keyHandler;	// Keyboard handle
 
 public:
 	void InitKeyboard(LPKEYEVENTHANDLER handler);

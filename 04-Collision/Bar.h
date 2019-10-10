@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObject.h"
 
-#define MARIO_WALKING_SPEED		0.1f 
+#define MARIO_WALKING_SPEED		0.5f 
 //0.1f
 #define MARIO_JUMP_SPEED_Y		0.5f
 #define MARIO_JUMP_DEFLECT_SPEED 0.2f
@@ -13,6 +13,10 @@
 #define MARIO_STATE_WALKING_LEFT	200
 #define MARIO_STATE_JUMP			300
 #define MARIO_STATE_DIE				400
+
+#define BAR_MOVE_DOWN 500
+#define BAR_MOVE_UP 600
+#define BAR_IDLE 700
 
 #define MARIO_ANI_BIG_IDLE_RIGHT		0
 #define MARIO_ANI_BIG_IDLE_LEFT			1
@@ -32,28 +36,31 @@
 #define MARIO_BIG_BBOX_WIDTH  15
 #define MARIO_BIG_BBOX_HEIGHT 27
 
+#define BAR_BBOX_WIDTH 10
+#define BAR_BBOX_HEIGHT 40
+
 #define MARIO_SMALL_BBOX_WIDTH  13
 #define MARIO_SMALL_BBOX_HEIGHT 15
 
 #define MARIO_UNTOUCHABLE_TIME 5000
 
 
-class CMario : public CGameObject
+class CBar : public CGameObject
 {
 	int level;
 	int untouchable;
 	DWORD untouchable_start;
-public: 
-	CMario() : CGameObject()
+public:
+	CBar() : CGameObject()
 	{
 		level = MARIO_LEVEL_BIG;
 		untouchable = 0;
 	}
-	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *colliable_objects = NULL);
+	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* colliable_objects = NULL);
 	virtual void Render();
 	void SetState(int state);
 	void SetLevel(int l) { level = l; }
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount(); }
 
-	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
+	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 };

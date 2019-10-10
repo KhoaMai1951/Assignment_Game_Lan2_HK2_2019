@@ -58,9 +58,9 @@ public:
 		float dx,			// 
 		float dy,			// 
 		float sl,			// static left
-		float st, 
-		float sr, 
-		float sb,
+		float st,			// static top					
+		float sr,			// static right
+		float sb,			// static bottom
 		float &t, 
 		float &nx, 
 		float &ny);
@@ -69,7 +69,8 @@ public:
 	LPDIRECT3DSURFACE9 GetBackBuffer() { return backBuffer; }
 	LPD3DXSPRITE GetSpriteHandler() { return this->spriteHandler; }
 
-	void SetCamPos(float x, float y) { cam_x = x; cam_y = y; }
+	void SetCamPos(float x, float y) 
+		{ cam_x = x; cam_y = y; }
 
 	static CGame * GetInstance();
 

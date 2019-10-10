@@ -1,4 +1,4 @@
-#include "Mario.h"
+﻿#include "Mario.h"
 
 void CMario::Update(DWORD dt)
 {
@@ -16,6 +16,32 @@ void CMario::Update(DWORD dt)
 	if (vx < 0 && x < 0) x = 0;
 }
 
+//Từ state, suy ra vận tốc và hướng
+void CMario::SetState(int state)
+{
+	CGameObject::SetState(state);
+	switch (state)
+	{
+	case MARIO_STATE_WALKING_RIGHT:
+		vx = MARIO_WALKING_SPEED;
+		nx = 1;
+		break;
+	case MARIO_STATE_WALKING_LEFT:
+		vx = -MARIO_WALKING_SPEED;
+		nx = -1;
+		break;
+	case MARIO_STATE_JUMP:
+		//Nếu đang trên mặt đất thì cho phép nhảy
+		if (y == 100)
+			vy = -MARIO_JUMP_SPEED_Y;
+
+	case MARIO_STATE_IDLE:
+		vx = 0;
+		break;
+	}
+}
+
+//Render animation của Mario tùy theo vận tốc vx và hướng nx 
 void CMario::Render()
 {
 	int ani;
@@ -31,26 +57,4 @@ void CMario::Render()
 	animations[ani]->Render(x, y);
 }
 
-void CMario::SetState(int state)
-{
-	CGameObject::SetState(state);
-	switch (state)
-	{
-	case MARIO_STATE_WALKING_RIGHT:
-		vx = MARIO_WALKING_SPEED;
-		nx = 1;
-		break;
-	case MARIO_STATE_WALKING_LEFT: 
-		vx = -MARIO_WALKING_SPEED;
-		nx = -1;
-		break;
-	case MARIO_STATE_JUMP: 
-		if (y==100)
-			vy = -MARIO_JUMP_SPEED_Y;
-
-	case MARIO_STATE_IDLE: 
-		vx = 0;
-		break;
-	}
-}
 

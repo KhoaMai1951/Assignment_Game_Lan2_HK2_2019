@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <Windows.h>
 #include <d3dx9.h>
@@ -15,19 +15,20 @@ class CGameObject;
 typedef CGameObject * LPGAMEOBJECT;
 
 struct CCollisionEvent;
-typedef CCollisionEvent * LPCOLLISIONEVENT;
+typedef CCollisionEvent* LPCOLLISIONEVENT; //Trỏ xuống CCollisionEvent
+
 struct CCollisionEvent
 {
-	LPGAMEOBJECT obj;
+	LPGAMEOBJECT obj;	//Member obj thuộc CGameObject
 	float t, nx, ny;
-	CCollisionEvent(float t, float nx, float ny, LPGAMEOBJECT obj = NULL) { this->t = t; this->nx = nx; this->ny = ny; this->obj = obj; }
+	CCollisionEvent(float t, float nx, float ny, LPGAMEOBJECT obj = NULL) 
+		{ this->t = t; this->nx = nx; this->ny = ny; this->obj = obj; }
 
 	static bool compare(const LPCOLLISIONEVENT &a, LPCOLLISIONEVENT &b)
 	{
 		return a->t < b->t;
 	}
 };
-
 
 
 class CGameObject

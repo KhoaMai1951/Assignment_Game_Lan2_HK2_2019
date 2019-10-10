@@ -56,6 +56,7 @@ void CGame::Init(HWND hWnd)
 */
 void CGame::Draw(float x, float y, LPDIRECT3DTEXTURE9 texture)
 {
+	//Describes a three-component vector including operator overloads and type casts.
 	D3DXVECTOR3 p(x, y, 0);
 	spriteHandler->Draw(texture, NULL, NULL, &p, D3DCOLOR_XRGB(255, 255, 255));
 }

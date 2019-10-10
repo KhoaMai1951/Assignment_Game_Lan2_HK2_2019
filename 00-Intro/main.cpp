@@ -1,16 +1,3 @@
-/* =============================================================
-INTRODUCTION TO GAME PROGRAMMING SE102
-
-SAMPLE 00 - INTRODUCTORY CODE
-
-This sample illustrates how to:
-
-1/ Create a window
-2/ Initiate DirectX 9, Direct3D, DirectX Sprite
-3/ Draw a static brick sprite to the screen
-
-WARNING: This example contains a hell LOT of *sinful* programming practices
-================================================================ */
 
 #include <windows.h>
 #include <d3d9.h>
@@ -25,7 +12,6 @@ WARNING: This example contains a hell LOT of *sinful* programming practices
 
 #define WINDOW_CLASS_NAME L"SampleWindow"
 #define MAIN_WINDOW_TITLE L"00 - Intro"
-
 #define BRICK_TEXTURE_PATH L"brick.png"
 
 #define BACKGROUND_COLOR D3DCOLOR_XRGB(255, 0, 0)
@@ -34,9 +20,6 @@ WARNING: This example contains a hell LOT of *sinful* programming practices
 
 #define MAX_FRAME_RATE 10
 
-
-LPDIRECT3D9 d3d = NULL;						// Direct3D handle
-LPDIRECT3DDEVICE9 d3ddv = NULL;				// Direct3D device object
 
 LPDIRECT3DSURFACE9 backBuffer = NULL;
 LPD3DXSPRITE spriteHandler = NULL;			// Sprite helper library to help us draw 2D image on the screen 

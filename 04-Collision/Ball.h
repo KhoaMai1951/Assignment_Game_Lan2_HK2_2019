@@ -32,28 +32,34 @@
 #define MARIO_BIG_BBOX_WIDTH  15
 #define MARIO_BIG_BBOX_HEIGHT 27
 
+#define BALL_BBOX_WIDTH 10
+#define BALL_BBOX_HEIGHT 40
+
 #define MARIO_SMALL_BBOX_WIDTH  13
 #define MARIO_SMALL_BBOX_HEIGHT 15
 
 #define MARIO_UNTOUCHABLE_TIME 5000
 
 
-class CMario : public CGameObject
+class CBall : public CGameObject
 {
+
 	int level;
 	int untouchable;
 	DWORD untouchable_start;
-public: 
-	CMario() : CGameObject()
+public:
+	CBall() : CGameObject()
 	{
+		vx = MARIO_WALKING_SPEED;
+		vy = MARIO_WALKING_SPEED;
 		level = MARIO_LEVEL_BIG;
 		untouchable = 0;
 	}
-	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *colliable_objects = NULL);
+	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* colliable_objects = NULL);
 	virtual void Render();
 	void SetState(int state);
 	void SetLevel(int l) { level = l; }
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount(); }
 
-	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
+	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 };

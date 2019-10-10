@@ -6,6 +6,13 @@
 
 #include "Sprites.h"
 
+#define MOVE_TOP 0
+#define MOVE_RIGHT 1
+#define MOVE_BOTTOM 2
+#define MOVE_LEFT 3
+
+
+
 
 using namespace std;
 
@@ -15,6 +22,7 @@ class CGameObject
 	float y;
 
 	float vx;
+	float vy;
 
 	int currentState;
 
@@ -27,7 +35,7 @@ public:
 
 	CGameObject();
 
-	void Update(DWORD dt);
+	void Update(DWORD dt, float width, float height);
 	void Render();
 	~CGameObject();
 };
